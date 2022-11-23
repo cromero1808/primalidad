@@ -1,0 +1,75 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://BALL.tscn" type="PackedScene" id=2]
+[ext_resource path="res://oponente IA.gd" type="Script" id=3]
+[ext_resource path="res://Level.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 536, 50 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 50, 367.75 )
+
+[sub_resource type="Theme" id=3]
+
+[node name="Level" type="Node2D"]
+position = Vector2( -240, 8 )
+script = ExtResource( 4 )
+
+[node name="pared superior" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pared superior"]
+position = Vector2( 776, -53 )
+shape = SubResource( 1 )
+
+[node name="pared inferior" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pared inferior"]
+position = Vector2( 776, 792 )
+shape = SubResource( 1 )
+
+[node name="arcoplayer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="arcoplayer"]
+position = Vector2( 192, 368 )
+shape = SubResource( 2 )
+
+[node name="arcooponente" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="arcooponente"]
+position = Vector2( 1360, 376 )
+shape = SubResource( 2 )
+
+[node name="player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 288, 328 )
+
+[node name="oponente IA" parent="." instance=ExtResource( 1 )]
+position = Vector2( 1208, 272 )
+script = ExtResource( 3 )
+
+[node name="BALL" parent="." instance=ExtResource( 2 )]
+position = Vector2( 752, 384 )
+
+[node name="MarcadorPlayer" type="Label" parent="."]
+margin_left = 248.0
+margin_right = 1304.0
+margin_bottom = 736.0
+theme = SubResource( 3 )
+text = "Marcador Player"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="MarcadorOponente" type="Label" parent="."]
+margin_left = 248.0
+margin_right = 1304.0
+margin_bottom = 736.0
+theme = SubResource( 3 )
+text = "Marcador Player"
+align = 1
+valign = 1
+uppercase = true
+
+[connection signal="body_entered" from="arcoplayer" to="." method="_on_arcoplayer_body_entered"]
+[connection signal="body_entered" from="arcooponente" to="." method="_on_arcooponente_body_entered"]
