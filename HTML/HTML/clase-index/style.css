@@ -1,0 +1,21 @@
+/* por el parametro, como vimos anteriormente con la etiqueta p*/
+
+p {
+    color:aquamarine;
+    font-size: 30px;
+}
+
+/* se puede agregar estilos de tres maneras */
+
+/*la otra forma es con classes*/
+
+.parrafo {
+    color: brown;
+}
+
+/*id*/
+
+#texto {
+    color: yellowgreen;
+    font-size: 35px;
+}
